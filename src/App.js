@@ -9,6 +9,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <a href= 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+        target='_blank' style={{height:70, width:90, backgroundColor:'pink', fontSize:18}}>CLICK ME FOR FREE MONEY!</a>
         <a
           className="App-link"
           href="https://reactjs.org"
