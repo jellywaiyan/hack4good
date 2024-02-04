@@ -1,11 +1,13 @@
 import React, { useContext, useRef } from "react";
 import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
-import { AuthContext } from "./context/AuthContext";
 import { auth } from "../firebaseSetup";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage({ user }) {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+
+  const navigate = useNavigate();
 
   const createAccount = async () => {
     try {
@@ -24,6 +26,7 @@ function LoginPage({ user }) {
         emailRef.current!.value,
         passwordRef.current!.value
       );
+      navigate("/home");
     } catch (error) {
       console.error(error);
     }
