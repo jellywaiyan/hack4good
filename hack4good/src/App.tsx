@@ -4,13 +4,18 @@ import viteLogo from "/vite.svg";
 // import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import { AuthContext } from "./context/AuthContext";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const user = useContext(AuthContext);
 
   return (
     <>
-      <LoginPage user={user} />
+      <Routes>
+        <Route path="/login" element={<LoginPage user={user} />} />
+        <Route path="/home" element={<HomePage user={user} />} />
+      </Routes>
     </>
   );
 }
