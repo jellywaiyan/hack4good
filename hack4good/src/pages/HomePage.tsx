@@ -34,9 +34,9 @@ function HomePage({ user }) {
   console.log(opportunities);
 
   return (
-    <div>
+    <div className="container flex flex-wrap justify-between">
       {opportunities.map((opportunity) => (
-        <Card className="w-[350px]">
+        <Card className="w-[300px] m-4 h-[350px]" style={{backgroundColor:"#FAF9F6"}}>
           <CardHeader>
             <CardTitle>{opportunity.event}</CardTitle>
             <CardDescription>{opportunity.date}</CardDescription>
@@ -48,12 +48,10 @@ function HomePage({ user }) {
                   <Label htmlFor="name">Location</Label>
                   <CardDescription>{opportunity.location}</CardDescription>
                 </div>
-                <div className="flex flex-col space-y-1.5">
+                <div className="flex-wrap items-center">
                   <Label htmlFor="framework">Target Group(s):</Label>
                   {opportunity.target.map((target) => (
-                    <Badge className="w-[100px]" variant="secondary">
-                      {target}
-                    </Badge>
+                    <Badge className="w-[100px] m-1" variant="secondary">{target}</Badge>
                   ))}
                 </div>
               </div>
