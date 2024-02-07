@@ -24,7 +24,7 @@ function RegisterPage({ user }) {
         .set({
           email: emailRef.current!.value,
           information: { name: "", age: "", number: "" },
-          preferences: { experience: "", interests: [], target: [] },
+          preferences: { experience: "", interests: "", target: [] },
           events: [],
         });
 

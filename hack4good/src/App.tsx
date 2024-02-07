@@ -7,6 +7,7 @@ import { AuthContext } from "./context/AuthContext";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/ResgisterPage";
+import UserPreferencesPage from "./pages/UserPreferencesPage";
 
 function App() {
   const user = useContext(AuthContext);
@@ -17,6 +18,10 @@ function App() {
         <Route path="/login" element={<LoginPage user={user} />} />
         <Route path="/home" element={<HomePage user={user} />} />
         <Route path="/register" element={<RegisterPage user={user} />} />
+        <Route
+          path="/preferences"
+          element={<UserPreferencesPage user={user} />}
+        />
       </Routes>
     </>
   );
