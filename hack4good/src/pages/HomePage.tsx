@@ -36,7 +36,10 @@ function HomePage({ user }) {
   return (
     <div className="container flex flex-wrap justify-between">
       {opportunities.map((opportunity) => (
-        <Card className="w-[300px] m-4 h-[350px]" style={{backgroundColor:"#FAF9F6"}}>
+        <Card
+          className="w-[300px] m-4 h-[350px]"
+          style={{ backgroundColor: "#FAF9F6" }}
+        >
           <CardHeader>
             <CardTitle>{opportunity.event}</CardTitle>
             <CardDescription>{opportunity.date}</CardDescription>
@@ -51,7 +54,9 @@ function HomePage({ user }) {
                 <div className="flex-wrap items-center">
                   <Label htmlFor="framework">Target Group(s):</Label>
                   {opportunity.target.map((target) => (
-                    <Badge className="w-[100px] m-1" variant="secondary">{target}</Badge>
+                    <Badge className="w-[100px] m-1" variant="secondary">
+                      {target}
+                    </Badge>
                   ))}
                 </div>
               </div>

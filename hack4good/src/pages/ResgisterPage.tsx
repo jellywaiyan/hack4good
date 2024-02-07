@@ -2,9 +2,10 @@ import React, { useContext, useRef } from "react";
 import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
 import { auth } from "../firebaseSetup";
 import { useNavigate } from "react-router-dom";
+import { firestore } from "../firebaseSetup";
 import { Label } from "@/components/ui/label";
 
-function LoginPage({ user }) {
+function RegisterPage({ user }) {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -12,18 +13,28 @@ function LoginPage({ user }) {
 
   const createAccount = async () => {
     try {
-      await auth.createUserWithEmailAndPassword(
+      const credential = await auth.createUserWithEmailAndPassword(
         emailRef.current!.value,
         passwordRef.current!.value
       );
+
+      await firestore
+        .collection("users")
+        .doc(credential.user!.uid)
+        .set({
+          email: emailRef.current!.value,
+          information: { name: "", age: "", number: "" },
+          preferences: { experience: "", interests: [], target: [] },
+          events: [],
+        });
+
+      navigate("/home");
     } catch (error) {
       console.error(error);
     }
   };
 
-  const signIn = async (e) => {
-    console.log(e);
-    e.preventDefault();
+  const signIn = async () => {
     try {
       await auth.signInWithEmailAndPassword(
         emailRef.current!.value,
@@ -46,7 +57,7 @@ function LoginPage({ user }) {
         {user && <Button onClick={signOut}>Sign Out</Button>}
       </Navbar>
       <Container style={{ maxWidth: "500px" }} fluid>
-        <Form className="mt-4" onSubmit={signIn}>
+        <Form className="mt-4" onSubmit={createAccount}>
           <Form.Group controlId="formEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control ref={emailRef} type="email" placeholder="email" />
@@ -60,14 +71,14 @@ function LoginPage({ user }) {
             />
           </Form.Group>
           <Row>
+            <Col xs={6}>
+              <Button type="submit">Sign Up</Button>
+            </Col>
             {/* <Col xs={6}>
-              <Button onClick={createAccount} type="button">
-                Sign Up
+              <Button onClick={signIn} type="button" variant="secondary">
+                Sign In
               </Button>
             </Col> */}
-            <Col xs={6}>
-              <Button type="submit">Sign In</Button>
-            </Col>
           </Row>
         </Form>
       </Container>
@@ -75,4 +86,4 @@ function LoginPage({ user }) {
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
