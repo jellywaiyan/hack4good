@@ -9,7 +9,7 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   const user = useContext(AuthContext);
-
+  console.log(user);
   return (
     <>
       <Routes>
