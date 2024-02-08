@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from "react";
 import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
 import { auth } from "../firebaseSetup";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { firestore } from "../firebaseSetup";
 import { Label } from "@/components/ui/label";
 
@@ -11,12 +11,15 @@ function RegisterPage({ user }) {
 
   const navigate = useNavigate();
 
-  const createAccount = async () => {
+  const createAccount = async (e) => {
+    e.preventDefault();
     try {
       const credential = await auth.createUserWithEmailAndPassword(
         emailRef.current!.value,
         passwordRef.current!.value
       );
+
+      console.log("Account created successfully!");
 
       await firestore
         .collection("users")
@@ -28,7 +31,9 @@ function RegisterPage({ user }) {
           events: [],
         });
 
-      navigate("/home");
+      console.log("Account added successfully!");
+
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -79,6 +84,10 @@ function RegisterPage({ user }) {
                 Sign In
               </Button>
             </Col> */}
+            <p>
+              Already have an account?{" "}
+              <Link to="/">Click here to sign in!</Link>
+            </p>
           </Row>
         </Form>
       </Container>

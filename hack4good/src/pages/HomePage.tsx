@@ -1,4 +1,4 @@
-import { firestore } from "@/firebaseSetup";
+import { firestore } from "../firebaseSetup";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,6 +22,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import firebase from "firebase/compat/app";
 
 function HomePage({ user }) {
   const [opportunities, setOpportunities] = useState<any[]>([]);
@@ -42,7 +43,31 @@ function HomePage({ user }) {
     };
   }, []);
 
-  console.log(opportunities);
+  async function registerForOpportunity(opportunity) {
+    try {
+      const userDoc = await firestore.collection("users").doc(user.uid).get();
+      const userData = userDoc.data();
+
+      await firestore
+        .collection("opportunities")
+        .doc(opportunity.id)
+        .update({
+          volunteers: firebase.firestore.FieldValue.arrayUnion(userData),
+        });
+
+      await firestore
+        .collection("users")
+        .doc(user.uid)
+        .update({
+          events: firebase.firestore.FieldValue.arrayUnion(opportunity),
+        });
+
+      console.log("Registered successfully!");
+      setOpen(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className="container fluid">
@@ -79,6 +104,7 @@ function HomePage({ user }) {
         {opportunities.map((opportunity) => (
           <Card
             className="w-[300px] m-4 h-[350px]"
+            key={opportunity.id}
             // style={{ backgroundColor: "#FAF9F6" }}
           >
             <CardHeader>
@@ -127,7 +153,12 @@ function HomePage({ user }) {
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button type="submit">Confirm</Button>
+                    <Button
+                      onClick={() => registerForOpportunity(opportunity)}
+                      type="submit"
+                    >
+                      Confirm
+                    </Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
