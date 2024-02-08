@@ -3,8 +3,9 @@ import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
 import { auth } from "../firebaseSetup";
 import { useNavigate } from "react-router-dom";
 import { Label } from "@/components/ui/label";
+import GuestNavBar from "@/components/ui/guestnavbar";
 
-function LoginPage({ user }) {
+function LoginPage() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -35,17 +36,10 @@ function LoginPage({ user }) {
     }
   };
 
-  const signOut = async () => {
-    await auth.signOut();
-  };
-
   return (
     <div>
-      <Navbar className="justify-content-between" bg="dark" variant="dark">
-        <Navbar.Brand>Firebase Authentication</Navbar.Brand>
-        {user && <Button onClick={signOut}>Sign Out</Button>}
-      </Navbar>
-      <Container style={{ maxWidth: "500px" }} fluid>
+      <GuestNavBar/>
+      <Container style={{ maxWidth: "500px"}} fluid>
         <Form className="mt-4" onSubmit={signIn}>
           <Form.Group controlId="formEmail">
             <Form.Label>Email</Form.Label>
@@ -66,7 +60,9 @@ function LoginPage({ user }) {
               </Button>
             </Col> */}
             <Col xs={6}>
-              <Button type="submit">Sign In</Button>
+              <Button type="submit"
+              style={{margin: "20px 0"}}
+              >Sign In</Button>
             </Col>
           </Row>
         </Form>

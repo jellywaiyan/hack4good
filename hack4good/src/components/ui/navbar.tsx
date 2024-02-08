@@ -2,7 +2,7 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebaseSetup";
+import { auth } from "../../firebaseSetup";
 
 function NavBar() {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ function NavBar() {
   return (
     <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary fixed-top">
         <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/wlc">
           <img
           src='./src/assets/BAHLogo.jpg'
           width="50"
@@ -28,7 +28,7 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-na">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/adminhome">Admin Page</Nav.Link>
             <NavDropdown title="Settings" id="basic-nav-dropdown">
               <NavDropdown.Item href="preferences">Volunteer Preferences</NavDropdown.Item>

@@ -36,35 +36,6 @@ function HomePage({ user }) {
 
   return (
     <div className="container fluid">
-      {/* <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary fixed-top">
-        <Container>
-        <Navbar.Brand href="#home">
-          <img
-          src='./src/assets/BAHLogo.jpg'
-          width="50"
-          height="50"
-          className="d-inline-block align-center"
-          />
-          </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-na">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Settings" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Volunteer Preferences</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                User Profile
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Log Out
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
       <div className="container flex flex-wrap justify-between">
         {opportunities.map((opportunity) => (
           <Card
