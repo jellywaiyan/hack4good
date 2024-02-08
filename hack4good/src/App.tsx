@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-// import "./App.css";
+import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import { AuthContext } from "./context/AuthContext";
 import { Routes, Route } from "react-router-dom";
@@ -9,13 +9,20 @@ import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/ResgisterPage";
 import UserPreferencesPage from "./pages/UserPreferencesPage";
 import UserInformationPage from "./pages/UserInformationPage";
+import AdminHomePage from "./pages/AdminHomePage";
+import NavBar from "./components/navbar";
+import firebase from "firebase/compat/app";
 
 function App() {
   const user = useContext(AuthContext);
   console.log(user);
 
+  var isLoggedIn = firebase.auth().currentUser;
+
   if (user) {
     return (
+      <div style={{paddingTop:90}}>
+        { isLoggedIn ? <NavBar/> : <> </>}
       <Routes>
         <Route path="/" element={<HomePage user={user} />} />
         <Route
@@ -23,11 +30,16 @@ function App() {
           element={<UserPreferencesPage user={user} />}
         />
         <Route
+          path="/adminhome"
+          element={<AdminHomePage user={ user } />}
+          />
+        <Route
           path="/information"
           element={<UserInformationPage user={user} />}
         />
         <Route path="/login" element={<LoginPage user={user} />} />
       </Routes>
+      </div>
     );
   } else {
     return (

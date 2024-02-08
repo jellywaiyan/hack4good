@@ -13,6 +13,8 @@ import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { firestore } from "../firebaseSetup";
 import { Input } from "@/components/ui/input";
+import Avatar from 'react-avatar';
+import { PencilIcon } from "@heroicons/react/16/solid";
 
 function UserInformationPage({ user }) {
   const [age, setAge] = useState("");
@@ -34,7 +36,12 @@ function UserInformationPage({ user }) {
     }
   }
 
+  function handleEditAvatarClick() {
+    alert("Wow!");
+  }
+
   return (
+    <div className="card-container">
     <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>Fill in your information here!</CardTitle>
@@ -43,6 +50,15 @@ function UserInformationPage({ user }) {
       <CardContent>
         <form onSubmit={savePreferences}>
           <div className="grid w-full items-center gap-4">
+            <div className="avatar-container">
+            <Avatar
+              githubHandle="leirdas"
+              round= {true}/>
+              <button className="edit-avatar-button"
+              onClick={handleEditAvatarClick}
+              >
+              <PencilIcon/></button>
+            </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Enter your name:</Label>
               <Input
@@ -78,6 +94,7 @@ function UserInformationPage({ user }) {
         <Button onClick={savePreferences}>Save</Button>
       </CardFooter>
     </Card>
+    </div>
   );
 }
 

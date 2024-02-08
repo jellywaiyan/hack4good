@@ -45,7 +45,8 @@ function UserPreferencesPage({ user }) {
   }
 
   return (
-    <Card className="w-[350px]">
+    <div className="card-container">
+    <Card className="w-[600px]">
       <CardHeader>
         <CardTitle>Fill in your preferences here!</CardTitle>
         <CardDescription>Let us know more about yourself</CardDescription>
@@ -128,6 +129,7 @@ function UserPreferencesPage({ user }) {
         <Button onClick={savePreferences}>Save</Button>
       </CardFooter>
     </Card>
+    </div>
   );
 }
 

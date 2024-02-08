@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +39,30 @@
 
 .read-the-docs {
   color: #888;
+} */
+
+.container {
+  padding: 0px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh; /* Adjust height as needed */
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-avatar-button {
+  margin-left: 10px; /* Adjust spacing as needed */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
 }
