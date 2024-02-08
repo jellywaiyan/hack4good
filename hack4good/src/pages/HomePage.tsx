@@ -12,6 +12,16 @@ import {
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 function HomePage({ user }) {
   const [opportunities, setOpportunities] = useState<any[]>([]);
@@ -80,7 +90,9 @@ function HomePage({ user }) {
                 <div className="grid w-full items-center gap-4">
                   <div className="flex flex-col space-y-1.5">
                     <Label htmlFor="name">Organisation:</Label>
-                    <CardDescription>{opportunity.location}</CardDescription>
+                    <CardDescription>
+                      {opportunity.organisation}
+                    </CardDescription>
                   </div>
                   <div className="flex-wrap items-center">
                     <Label htmlFor="framework">Target Group(s):</Label>
@@ -95,7 +107,32 @@ function HomePage({ user }) {
             </CardContent>
             <CardFooter className="flex justify-between">
               {/* <Button variant="outline">Cancel</Button> */}
-              <Button>Register</Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="default">Register</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Details</DialogTitle>
+                    <DialogDescription>{opportunity.details}</DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <DialogTitle className="text-right">
+                        Date and Time
+                      </DialogTitle>
+                      <DialogDescription>
+                        {opportunity.frequency}
+                      </DialogDescription>
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <Button type="submit">Confirm</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              {/* <Button>Register</Button> */}
             </CardFooter>
           </Card>
         ))}
