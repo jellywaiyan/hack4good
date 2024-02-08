@@ -29,7 +29,7 @@ function LoginPage({ user }) {
         emailRef.current!.value,
         passwordRef.current!.value
       );
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
