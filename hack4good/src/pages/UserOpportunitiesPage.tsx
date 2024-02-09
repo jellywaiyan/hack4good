@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import firebase from "firebase/compat/app";
 
-function HomePage({ user }) {
+function UserOpportunitiesPage({ user }) {
   const [opportunities, setOpportunities] = useState<any[]>([]);
 
   useEffect(() => {
@@ -142,4 +142,4 @@ function HomePage({ user }) {
   );
 }
 
-export default HomePage;
+export default UserOpportunitiesPage;

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebaseSetup";
 
-function NavBar() {
+function AdminNavBar() {
     const navigate = useNavigate();
 
     async function handleLogout() {
@@ -28,18 +28,8 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-na">
           <Nav className="me-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/adminhome">Admin Page</Nav.Link>
-            <NavDropdown title="Settings" id="basic-nav-dropdown">
-              <NavDropdown.Item href="preferences">Volunteer Preferences</NavDropdown.Item>
-              <NavDropdown.Item href="information">
-                User Profile
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={handleLogout}>
-                Log Out
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/adminhome">Admin Home</Nav.Link>
+            <Nav.Link onClick={handleLogout}> Log Out </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         </Container>
@@ -47,4 +37,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default AdminNavBar;
