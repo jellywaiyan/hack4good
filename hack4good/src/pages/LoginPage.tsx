@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from "react";
 import { Button, Col, Container, Form, Navbar, Row } from "react-bootstrap";
 import { auth } from "../firebaseSetup";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Label } from "@/components/ui/label";
 import GuestNavBar from "@/components/ui/guestnavbar";
 
@@ -64,6 +64,11 @@ function LoginPage() {
               style={{margin: "20px 0"}}
               >Sign In</Button>
             </Col>
+
+            <p>
+              Don't have an account yet?{" "}
+              <Link to="/register">Click here to sign up!</Link>
+            </p>
           </Row>
         </Form>
       </Container>
