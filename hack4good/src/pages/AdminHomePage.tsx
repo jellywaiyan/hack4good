@@ -33,6 +33,24 @@ function AdminHomePage({ user }) {
   const [details, setDetails] = useState("");
   const [frequency, setFrequency] = useState("");
   const [selectedGroups, setSelectedGroups] = useState<string[]>([]);
+  const [editOpportunityId, setEditOpportunityId] = useState<string | null>(
+    null
+  );
+
+  const handleEditOpportunity = (opportunityId: string) => {
+    const opportunityToEdit = opportunities.find(
+      (opportunity) => opportunity.id === opportunityId
+    );
+    if (opportunityToEdit) {
+      setEvent(opportunityToEdit.event);
+      setDate(opportunityToEdit.date);
+      setOrganisation(opportunityToEdit.organisation);
+      setDetails(opportunityToEdit.details);
+      setFrequency(opportunityToEdit.frequency);
+      setSelectedGroups(opportunityToEdit.target);
+      setEditOpportunityId(opportunityId);
+    }
+  };
 
   const toggleGroup = (group: string) => {
     setSelectedGroups((prevGroups) =>
@@ -56,15 +74,30 @@ function AdminHomePage({ user }) {
     }
 
     try {
-      await firestore.collection("opportunities").add({
-        event,
-        date,
-        organisation,
-        details,
-        frequency,
-        target: selectedGroups,
-        volunteers: [],
-      });
+      if (editOpportunityId) {
+        await firestore
+          .collection("opportunities")
+          .doc(editOpportunityId)
+          .update({
+            event,
+            date,
+            organisation,
+            details,
+            frequency,
+            target: selectedGroups,
+            volunteers: [],
+          });
+      } else {
+        await firestore.collection("opportunities").add({
+          event,
+          date,
+          organisation,
+          details,
+          frequency,
+          target: selectedGroups,
+          volunteers: [],
+        });
+      }
 
       setEvent("");
       setDate("");
@@ -72,6 +105,7 @@ function AdminHomePage({ user }) {
       setDetails("");
       setFrequency("");
       setSelectedGroups([]);
+      setEditOpportunityId(null);
       console.log("Opportunity added successfully!");
     } catch (error) {
       console.error("Error adding opportunity:", error);
@@ -270,7 +304,154 @@ function AdminHomePage({ user }) {
             <CardFooter className="flex justify-center space-x-2">
               {/* <Button variant="outline">Cancel</Button> */}
               <Button>View Details</Button>
-              <Button>Edit Opportunity</Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <DialogButton
+                    variant="default"
+                    onClick={() => handleEditOpportunity(opportunity.id)}
+                  >
+                    Edit opportunity
+                  </DialogButton>
+                </DialogTrigger>
+                <DialogContent className="lg:max-w-screen-lg overflow-y-scroll max-h-screen">
+                  <DialogHeader>
+                    <DialogTitle>Add volunteering opportunity</DialogTitle>
+                    <DialogDescription>
+                      Fill in the details regarding the volunteering opportunity
+                      below!
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="name" className="text-right">
+                        Volunteering event:
+                      </Label>
+                      <Input
+                        id="name"
+                        value={event}
+                        onChange={(e) => setEvent(e.target.value)}
+                        className="col-span-3"
+                        placeholder="Eg. Outing Support for Seniors"
+                      />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="date" className="text-right">
+                        Start date:
+                      </Label>
+                      <Input
+                        id="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        className="col-span-3"
+                        placeholder="Eg. 23/02/2024"
+                      />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="organisation" className="text-right">
+                        Organisation name:
+                      </Label>
+                      <Input
+                        id="organisation"
+                        value={organisation}
+                        onChange={(e) => setOrganisation(e.target.value)}
+                        className="col-span-3"
+                        placeholder="Eg. Big at Heart"
+                      />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="details" className="text-right">
+                        Details:
+                      </Label>
+                      <Textarea
+                        id="details"
+                        value={details}
+                        onChange={(e) => setDetails(e.target.value)}
+                        className="col-span-3"
+                        placeholder="Eg. Seniors from Active Global will be going to ITE College Central for CNY celebration and will require volunteers to assist the staff in ensuring the seniors' safety."
+                      />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="frequency" className="text-right">
+                        Frequency:
+                      </Label>
+                      <Textarea
+                        id="frequency"
+                        value={frequency}
+                        onChange={(e) => setFrequency(e.target.value)}
+                        className="col-span-3"
+                        placeholder="Eg. Seniors from Active Global will be going to ITE College Central for CNY celebration and will require volunteers to assist the staff in ensuring the seniors' safety."
+                      />
+                    </div>
+                    <div className="grid w-full items-center gap-4">
+                      <div className="flex flex-col space-y-1.5">
+                        <Label htmlFor="name">
+                          Select volunteer event's target volunteer group(s):
+                        </Label>
+                        <Button
+                          variant={
+                            selectedGroups.includes("Children")
+                              ? "primary"
+                              : "light"
+                          }
+                          onClick={() => toggleGroup("Children")}
+                          className="m-1"
+                        >
+                          Children
+                        </Button>
+                        <Button
+                          variant={
+                            selectedGroups.includes("Youth")
+                              ? "primary"
+                              : "light"
+                          }
+                          onClick={() => toggleGroup("Youth")}
+                          className="m-1"
+                        >
+                          Youth
+                        </Button>
+                        <Button
+                          variant={
+                            selectedGroups.includes("Elderly")
+                              ? "primary"
+                              : "light"
+                          }
+                          onClick={() => toggleGroup("Elderly")}
+                          className="m-1"
+                        >
+                          Elderly
+                        </Button>
+                        <Button
+                          variant={
+                            selectedGroups.includes("Disabled")
+                              ? "primary"
+                              : "light"
+                          }
+                          onClick={() => toggleGroup("Disabled")}
+                          className="m-1"
+                        >
+                          Disabled
+                        </Button>
+                        <Button
+                          variant={
+                            selectedGroups.includes("Low-income")
+                              ? "primary"
+                              : "light"
+                          }
+                          onClick={() => toggleGroup("Low-income")}
+                          className="m-1"
+                        >
+                          Low-income
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <Button type="submit" onClick={saveOpportunity}>
+                      Save changes
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </CardFooter>
           </Card>
         ))}
