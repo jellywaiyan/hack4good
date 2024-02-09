@@ -12,6 +12,7 @@ import UserInformationPage from "./pages/UserInformationPage";
 import AdminHomePage from "./pages/AdminHomePage";
 import NavBar from "./components/navbar";
 import firebase from "firebase/compat/app";
+import UserRegisteredOpportunities from "./pages/UserRegisteredOpportunities";
 
 function App() {
   const user = useContext(AuthContext);
@@ -30,11 +31,15 @@ function App() {
             path="/preferences"
             element={<UserPreferencesPage user={user} />}
           />
-          {/* <Route path="/adminhome" element={<AdminHomePage user={user} />} /> */}
           <Route
             path="/information"
             element={<UserInformationPage user={user} />}
           />
+          <Route
+            path="/registered"
+            element={<UserRegisteredOpportunities user={user} />}
+          />
+          {/* <Route path="/adminhome" element={<AdminHomePage user={user} />} /> */}
           {/* <Route path="/login" element={<LoginPage user={user} />} /> */}
         </Routes>
       </div>
