@@ -107,7 +107,7 @@ function UserOpportunitiesPage({ user }) {
                 <DialogTrigger asChild>
                   <Button variant="default">Register</Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="lg:max-w-screen-lg overflow-y-scroll max-h-screen">
                   <DialogHeader>
                     <DialogTitle>Details</DialogTitle>
                     <DialogDescription>{opportunity.details}</DialogDescription>
