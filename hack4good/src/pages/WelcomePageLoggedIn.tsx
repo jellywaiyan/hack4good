@@ -1,14 +1,18 @@
 import GuestNavBar from '@/components/ui/guestnavbar'
 import React from 'react'
+import Herosection from '@/components/ui/herosection'
+import { Button, CardFooter } from 'react-bootstrap'
+import Footer from '@/components/ui/Footer/Footer'
 
-const WelcomePageLoggedOut = () => {
+
+const WelcomePageLoggedIn = () => {
 
   return (
     <div>
-      <GuestNavBar/>
-      <h1>Welcome</h1>
+      <Herosection/>
+      <Footer/>
     </div>
   )
 }
 
-export default WelcomePageLoggedOut
+export default WelcomePageLoggedIn

@@ -131,7 +131,7 @@ function AdminHomePage({ user }) {
   // console.log(opportunities);
 
   return (
-    <>
+    <div>
       <div>
         <Dialog>
           <DialogTrigger asChild>
@@ -456,7 +456,7 @@ function AdminHomePage({ user }) {
           </Card>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

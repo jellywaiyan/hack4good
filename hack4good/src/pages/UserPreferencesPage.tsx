@@ -49,6 +49,7 @@ function UserPreferencesPage({ user }) {
   }
 
   return (
+    <div style={{backgroundColor:"rgb(234, 119, 119)", height:"100vh", padding:20}}>
     <div className="card-container">
       <Card className="w-[600px]">
         <CardHeader>
@@ -135,6 +136,7 @@ function UserPreferencesPage({ user }) {
           <Button onClick={savePreferences}>Save</Button>
         </CardFooter>
       </Card>
+    </div>
     </div>
   );
 }

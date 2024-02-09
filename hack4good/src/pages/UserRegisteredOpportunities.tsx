@@ -50,9 +50,12 @@ function UserRegisteredOpportunities({ user }) {
 
   return (
     <>
+    <div style={{backgroundColor:"rgb(234, 119, 119)"}}>
       <div>
         {name && (
-          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
+          style={{width:"95%", textAlign:"center"}}
+          >
             Welcome {name}, here are the volunteering opporunities you
             registered for!
           </h1>
@@ -129,6 +132,7 @@ function UserRegisteredOpportunities({ user }) {
             </Card>
           ))}
         </div>
+      </div>
       </div>
     </>
   );

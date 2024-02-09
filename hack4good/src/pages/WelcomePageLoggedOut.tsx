@@ -1,13 +1,16 @@
 import GuestNavBar from '@/components/ui/guestnavbar'
+import Herosection from '@/components/ui/herosection'
+import HerosectionGuest from '@/components/ui/herosectionguest'
 import React from 'react'
 
-const WelcomePageLoggedIn = () => {
+const WelcomePageLoggedOut = () => {
 
   return (
     <div>
-      <h1>Welcome</h1>
+      <GuestNavBar/>
+      <HerosectionGuest/>
     </div>
   )
 }
 
-export default WelcomePageLoggedIn
+export default WelcomePageLoggedOut

@@ -10,8 +10,8 @@ import UserInformationPage from "./pages/UserInformationPage";
 import AdminHomePage from "./pages/AdminHomePage";
 import firebase from "firebase/compat/app";
 import UserRegisteredOpportunities from "./pages/UserRegisteredOpportunities";
-import WelcomePageLoggedOut from "./pages/WelcomePageLoggedIn";
-import WelcomePageLoggedIn from "./pages/WelcomePageLoggedOut";
+import WelcomePageLoggedOut from "./pages/WelcomePageLoggedOut";
+import WelcomePageLoggedIn from "./pages/WelcomePageLoggedIn";
 import UserNavBar from "./components/ui/usernavbar";
 import AdminNavBar from "./components/ui/adminnavbar";
 import UserOpportunitiesPage from "./pages/UserOpportunitiesPage";
@@ -25,7 +25,7 @@ function App() {
 
   if (user && !user.email.startsWith("admin")) {
     return (
-      <div style={{ paddingTop: 90 }}>
+      <div style={{ paddingTop: 60}}>
         {isLoggedIn ? <UserNavBar /> : <> </>}
         <Routes>
           <Route path="/wlc" element={<WelcomePageLoggedIn />} />
@@ -48,7 +48,7 @@ function App() {
     );
   } else if (user && user.email.startsWith("admin")) {
     return (
-      <div style={{ paddingTop: 90 }}>
+      <div style={{ paddingTop: 60 }}>
         {isLoggedIn ? <AdminNavBar /> : <> </>}
         <Routes>
           <Route path="/adminhome" element={<AdminHomePage user={user} />} />
@@ -58,7 +58,7 @@ function App() {
     );
   } else {
     return (
-      <div style={{paddingTop:90}}>
+      <div style={{paddingTop:60}}>
       <Routes>
         <Route path="/" element={<WelcomePageLoggedOut />} />
         <Route path="/login" element={<LoginPage/>} />

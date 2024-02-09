@@ -4,7 +4,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 function GuestNavBar() {
 
   return (
-    <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary fixed-top">
+    <Navbar data-bs-theme="light" expand="lg" className="navbar fixed-top">
         <Container>
         <Navbar.Brand href="/">
           <img

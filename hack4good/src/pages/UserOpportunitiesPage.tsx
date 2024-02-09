@@ -69,6 +69,7 @@ function UserOpportunitiesPage({ user }) {
   }
 
   return (
+    <div style={{backgroundColor:"rgb(234, 119, 119)"}}>
     <div className="container fluid">
       <div className="container flex flex-wrap justify-between">
         {opportunities.map((opportunity) => (
@@ -138,6 +139,7 @@ function UserOpportunitiesPage({ user }) {
           </Card>
         ))}
       </div>
+    </div>
     </div>
   );
 }

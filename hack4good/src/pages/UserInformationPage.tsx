@@ -21,6 +21,7 @@ function UserInformationPage({ user }) {
   const [age, setAge] = useState("");
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const [imageUpload, setImageUpload] = useState(null);
 
   const navigate = useNavigate();
 
@@ -46,7 +47,7 @@ function UserInformationPage({ user }) {
   }
 
   return (
-    <div className="card-container">
+    <div className="card-container" style={{backgroundColor:"rgb(234, 119, 119)", height:"100vh"}}>
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>Fill in your information here!</CardTitle>
