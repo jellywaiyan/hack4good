@@ -4,8 +4,9 @@ import { auth } from "../firebaseSetup";
 import { useNavigate, Link } from "react-router-dom";
 import { firestore } from "../firebaseSetup";
 import { Label } from "@/components/ui/label";
+import GuestNavBar from "@/components/ui/guestnavbar";
 
-function RegisterPage({ user }) {
+function RegisterPage() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -57,10 +58,7 @@ function RegisterPage({ user }) {
 
   return (
     <div>
-      <Navbar className="justify-content-between" bg="dark" variant="dark">
-        <Navbar.Brand>Firebase Authentication</Navbar.Brand>
-        {user && <Button onClick={signOut}>Sign Out</Button>}
-      </Navbar>
+      <GuestNavBar/>
       <Container style={{ maxWidth: "500px" }} fluid>
         <Form className="mt-4" onSubmit={createAccount}>
           <Form.Group controlId="formEmail">
@@ -77,7 +75,9 @@ function RegisterPage({ user }) {
           </Form.Group>
           <Row>
             <Col xs={6}>
-              <Button type="submit">Sign Up</Button>
+              <Button type="submit"
+              style={{ margin: "20px 0"}}
+              >Sign Up</Button>
             </Col>
             {/* <Col xs={6}>
               <Button onClick={signIn} type="button" variant="secondary">

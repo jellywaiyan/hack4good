@@ -10,7 +10,7 @@ import RegisterPage from "./pages/ResgisterPage";
 import UserPreferencesPage from "./pages/UserPreferencesPage";
 import UserInformationPage from "./pages/UserInformationPage";
 import AdminHomePage from "./pages/AdminHomePage";
-import NavBar from "./components/navbar";
+import NavBar from "./components/ui/navbar";
 import firebase from "firebase/compat/app";
 import UserRegisteredOpportunities from "./pages/UserRegisteredOpportunities";
 
@@ -65,10 +65,13 @@ function App() {
     );
   } else {
     return (
+      <div style={{paddingTop:90}}>
       <Routes>
-        <Route path="/" element={<LoginPage user={user} />} />
-        <Route path="/register" element={<RegisterPage user={user} />} />
+        <Route path="/" element={<WelcomePageLoggedOut />} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
+      </div>
     );
   }
 }
