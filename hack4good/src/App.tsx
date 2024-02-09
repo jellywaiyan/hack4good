@@ -15,30 +15,47 @@ import firebase from "firebase/compat/app";
 
 function App() {
   const user = useContext(AuthContext);
-  console.log(user);
+  console.log(user?.email);
+  // console.log(firebase.auth().currentUser);
 
   var isLoggedIn = firebase.auth().currentUser;
 
-  if (user) {
+  if (user && !user.email.startsWith("admin")) {
     return (
-      <div style={{paddingTop:90}}>
-        { isLoggedIn ? <NavBar/> : <> </>}
-      <Routes>
-        <Route path="/" element={<HomePage user={user} />} />
-        <Route
-          path="/preferences"
-          element={<UserPreferencesPage user={user} />}
-        />
-        <Route
-          path="/adminhome"
-          element={<AdminHomePage user={ user } />}
+      <div style={{ paddingTop: 90 }}>
+        {isLoggedIn ? <NavBar /> : <> </>}
+        <Routes>
+          <Route path="/" element={<HomePage user={user} />} />
+          <Route
+            path="/preferences"
+            element={<UserPreferencesPage user={user} />}
           />
-        <Route
-          path="/information"
-          element={<UserInformationPage user={user} />}
-        />
-        <Route path="/login" element={<LoginPage user={user} />} />
-      </Routes>
+          {/* <Route path="/adminhome" element={<AdminHomePage user={user} />} /> */}
+          <Route
+            path="/information"
+            element={<UserInformationPage user={user} />}
+          />
+          {/* <Route path="/login" element={<LoginPage user={user} />} /> */}
+        </Routes>
+      </div>
+    );
+  } else if (user && user.email.startsWith("admin")) {
+    return (
+      <div style={{ paddingTop: 90 }}>
+        {isLoggedIn ? <NavBar /> : <> </>}
+        <Routes>
+          <Route path="/" element={<AdminHomePage user={user} />} />
+          {/* <Route path="/" element={<HomePage user={user} />} />
+          <Route
+            path="/preferences"
+            element={<UserPreferencesPage user={user} />}
+          />
+          <Route
+            path="/information"
+            element={<UserInformationPage user={user} />}
+          /> */}
+          {/* <Route path="/login" element={<LoginPage user={user} />} /> */}
+        </Routes>
       </div>
     );
   } else {

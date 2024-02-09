@@ -33,7 +33,7 @@ function RegisterPage({ user }) {
 
       console.log("Account added successfully!");
 
-      navigate("/");
+      navigate("/information");
     } catch (error) {
       console.error(error);
     }
