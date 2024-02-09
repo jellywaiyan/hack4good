@@ -30,7 +30,7 @@ function LoginPage() {
         emailRef.current!.value,
         passwordRef.current!.value
       );
-      navigate("/");
+      navigate("/wlc");
     } catch (error) {
       console.error(error);
     }
