@@ -67,15 +67,6 @@
   background-color: rgb(234, 119, 119);
 }
 
-/* .hero-container {
-  background: url('./assets/BAHheroimg.jpg') center/cover;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column;
-  opacity: 0.8;
-  z-index: 1;
-} */
-
 .hero-content {
   display: flex;
   flex-direction: column;

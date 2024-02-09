@@ -13,6 +13,7 @@ const Card = React.forwardRef<
       className
     )}
     {...props}
+    style={{overflow:"scroll"}}
   />
 ))
 Card.displayName = "Card"

@@ -74,7 +74,7 @@ function UserOpportunitiesPage({ user }) {
       <div className="container flex flex-wrap justify-between">
         {opportunities.map((opportunity) => (
           <Card
-            className="w-[300px] m-4 h-[350px]"
+            className="w-[300px] m-4 h-[400px]"
             key={opportunity.id}
             // style={{ backgroundColor: "#FAF9F6" }}
           >

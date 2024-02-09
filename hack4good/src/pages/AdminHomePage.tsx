@@ -131,14 +131,17 @@ function AdminHomePage({ user }) {
   // console.log(opportunities);
 
   return (
-    <div>
+    <div style={{padding:20}}>
       <div>
         <Dialog>
           <DialogTrigger asChild>
-            <DialogButton variant="outline">Add opportunity</DialogButton>
+            <DialogButton variant="outline"
+            style={{color:"white",backgroundColor:"green", bottom:"30px"}}
+            >Add opportunity</DialogButton>
           </DialogTrigger>
           <DialogContent className="lg:max-w-screen-lg overflow-y-scroll max-h-screen">
-            <DialogHeader>
+            <DialogHeader
+            style={{padding:70}}>
               <DialogTitle>Add volunteering opportunity</DialogTitle>
               <DialogDescription>
                 Fill in the details regarding the volunteering opportunity
@@ -272,7 +275,7 @@ function AdminHomePage({ user }) {
       <div className="container flex flex-wrap justify-between">
         {opportunities.map((opportunity) => (
           <Card
-            className="w-[300px] m-4 h-[350px]"
+            className="w-[300px] m-4 h-[400px]"
             key={opportunity.id}
             //style={{ backgroundColor: "#FAF9F6" }}
           >
