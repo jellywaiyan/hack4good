@@ -69,77 +69,80 @@ function UserOpportunitiesPage({ user }) {
   }
 
   return (
-    <div style={{backgroundColor:"rgb(234, 119, 119)"}}>
-    <div className="container fluid">
-      <div className="container flex flex-wrap justify-between">
-        {opportunities.map((opportunity) => (
-          <Card
-            className="w-[300px] m-4 h-[400px]"
-            key={opportunity.id}
-            // style={{ backgroundColor: "#FAF9F6" }}
-          >
-            <CardHeader>
-              <CardTitle>{opportunity.event}</CardTitle>
-              <CardDescription>{opportunity.date}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form>
-                <div className="grid w-full items-center gap-4">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="name">Organisation:</Label>
-                    <CardDescription>
-                      {opportunity.organisation}
-                    </CardDescription>
-                  </div>
-                  <div className="flex-wrap items-center">
-                    <Label htmlFor="framework">Target Group(s):</Label>
-                    {opportunity.target.map((target) => (
-                      <Badge className="w-[100px] m-1" variant="secondary">
-                        {target}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </form>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              {/* <Button variant="outline">Cancel</Button> */}
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="default">Register</Button>
-                </DialogTrigger>
-                <DialogContent className="lg:max-w-screen-lg overflow-y-scroll max-h-screen">
-                  <DialogHeader>
-                    <DialogTitle>Details</DialogTitle>
-                    <DialogDescription>{opportunity.details}</DialogDescription>
-                  </DialogHeader>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
-                      <DialogTitle className="text-right">
-                        Date and Time
-                      </DialogTitle>
-                      <DialogDescription>
-                        {opportunity.frequency}
-                      </DialogDescription>
+    <div style={{ backgroundColor: "rgb(234, 119, 119)" }}>
+      <div className="container fluid">
+        <div className="container flex flex-wrap justify-between">
+          {opportunities.map((opportunity) => (
+            <Card
+              className="w-[300px] m-4 h-[400px]"
+              key={opportunity.id}
+              // style={{ backgroundColor: "#FAF9F6" }}
+            >
+              <CardHeader>
+                <CardTitle>{opportunity.event}</CardTitle>
+                <CardDescription>Start date:</CardDescription>
+                <CardDescription>{opportunity.date}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form>
+                  <div className="grid w-full items-center gap-4">
+                    <div className="flex flex-col space-y-1.5">
+                      <Label htmlFor="name">Organisation:</Label>
+                      <CardDescription>
+                        {opportunity.organisation}
+                      </CardDescription>
+                    </div>
+                    <div className="flex-wrap items-center">
+                      <Label htmlFor="framework">Target Group(s):</Label>
+                      {opportunity.target.map((target) => (
+                        <Badge className="w-[100px] m-1" variant="secondary">
+                          {target}
+                        </Badge>
+                      ))}
                     </div>
                   </div>
-                  <DialogFooter>
-                    <Button
-                      onClick={() => registerForOpportunity(opportunity)}
-                      type="submit"
-                    >
-                      Confirm
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
+                </form>
+              </CardContent>
+              <CardFooter className="flex justify-between">
+                {/* <Button variant="outline">Cancel</Button> */}
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="default">Register</Button>
+                  </DialogTrigger>
+                  <DialogContent className="lg:max-w-screen-lg overflow-y-scroll max-h-screen">
+                    <DialogHeader>
+                      <DialogTitle>Details</DialogTitle>
+                      <DialogDescription>
+                        {opportunity.details}
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <DialogTitle className="text-right">
+                          Date and Time
+                        </DialogTitle>
+                        <DialogDescription>
+                          {opportunity.frequency}
+                        </DialogDescription>
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button
+                        onClick={() => registerForOpportunity(opportunity)}
+                        type="submit"
+                      >
+                        Confirm
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
 
-              {/* <Button>Register</Button> */}
-            </CardFooter>
-          </Card>
-        ))}
+                {/* <Button>Register</Button> */}
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

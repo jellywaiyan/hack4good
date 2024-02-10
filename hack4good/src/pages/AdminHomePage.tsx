@@ -131,17 +131,23 @@ function AdminHomePage({ user }) {
   // console.log(opportunities);
 
   return (
-    <div style={{padding:20}}>
+    <div style={{ padding: 20 }}>
       <div>
         <Dialog>
           <DialogTrigger asChild>
-            <DialogButton variant="outline"
-            style={{color:"white",backgroundColor:"green", bottom:"30px"}}
-            >Add opportunity</DialogButton>
+            <DialogButton
+              variant="outline"
+              style={{
+                color: "white",
+                backgroundColor: "green",
+                bottom: "30px",
+              }}
+            >
+              Add opportunity
+            </DialogButton>
           </DialogTrigger>
           <DialogContent className="lg:max-w-screen-lg overflow-y-scroll max-h-screen">
-            <DialogHeader
-            style={{padding:70}}>
+            <DialogHeader style={{ padding: 70 }}>
               <DialogTitle>Add volunteering opportunity</DialogTitle>
               <DialogDescription>
                 Fill in the details regarding the volunteering opportunity
@@ -306,7 +312,38 @@ function AdminHomePage({ user }) {
             </CardContent>
             <CardFooter className="flex justify-center space-x-2">
               {/* <Button variant="outline">Cancel</Button> */}
-              <Button>View Details</Button>
+              {/* <Button>View Details</Button> */}
+
+              <Dialog>
+                <DialogTrigger asChild>
+                  <DialogButton variant="default">View Details</DialogButton>
+                </DialogTrigger>
+                <DialogContent className="lg:max-w-screen-lg overflow-y-scroll max-h-screen">
+                  <DialogHeader>
+                    <DialogTitle>Details</DialogTitle>
+                    <DialogDescription>{opportunity.details}</DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <DialogTitle className="text-right">
+                        Date and Time
+                      </DialogTitle>
+                      <DialogDescription>
+                        {opportunity.frequency}
+                      </DialogDescription>
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    {/* <Button
+                        onClick={() => registerForOpportunity(opportunity)}
+                        type="submit"
+                      >
+                        Confirm
+                      </Button> */}
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
               <Dialog>
                 <DialogTrigger asChild>
                   <DialogButton
